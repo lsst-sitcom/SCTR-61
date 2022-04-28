@@ -1,0 +1,9 @@
+% bibentry template for lsst.bib in https://github.com/lsst/lsst-texmf/blob/main/texmf/bibtex/bib/lsst.bib
+
+@DocuShare{SCTR-61,
+   author = { Pablo Zorzi },
+    title = {M1M3 Thermal System Verification on Level 3},
+     year = 2022,
+    month = Apr,
+   handle = {SCTR-61},
+      url = {https://sctr-61.lsst.io } }
