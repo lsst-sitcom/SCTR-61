@@ -1,38 +1,99 @@
-\documentclass[DM,lsstdraft,toc]{lsstdoc}
+% generated from JIRA project LVV
+% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 2.2.4
+% Please do not edit -- update information in Jira instead
+\documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
 \usepackage{longtable,booktabs}
 \usepackage{enumitem}
 \usepackage{arydshln}
+\usepackage{attachfile}
+\usepackage{array}
+\usepackage{dashrule}
 
-\input{meta.tex}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
+\input meta.tex
+
+\newcommand{\attachmentsUrl}{https://github.com/\gitorg/\lsstDocType-\lsstDocNum/blob/\gitref/attachments}
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+\setcounter{tocdepth}{4}
+
 \begin{document}
 
-\def\milestoneName{M1M3 Thermal System Verification on Level 3}
-\def\milestoneId{LVV-P93}
-\def\product{Data Management}
+\def\milestoneName{M1M3 Thermal Control System Verification Testing on Level 3.}
+\def\milestoneId{}
+\def\product{SIT-COM Integration}
 
 \setDocCompact{true}
 
-\title{LVV-P93 M1M3 Thermal System Verification on Level 3 Test Plan and Report}
+\title{LVV-P93: M1M3 Thermal Control System Verification Testing on Level 3. Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{\vcsDate}
-\author{Pablo Zorzi}
+\date{ 2022-05-03 }
+\author{ Pablo Zorzi }
 
 \input{history_and_info.tex}
 
+
 \setDocAbstract{
-This is a stub test report created from a template.
-The content is being prepared.
+This is the test plan and report for
+\textbf{ M1M3 Thermal Control System Verification Testing on Level 3.},
+an LSST milestone pertaining to the Data Management Subsystem.\\
+This document is based on content automatically extracted from the Jira test database on \docDate.
+The most recent change to the document repository was on \vcsDate.
 }
+
 
 \maketitle
 
 \section{Introduction}
-Use the GitHub Actions workflow ``docgen from Jira'' to generate this document's content from Jira.
+\label{sect:intro}
+
+
+\subsection{Objectives}
+\label{sect:objectives}
+
+ The goal of this Test Plan is to verify all the M1M3 Thermal System
+requirements that can be Tested with the M1M3 Cell and the Surrogate on
+Level\_3.
+
+
+
+\subsection{System Overview}
+\label{sect:systemoverview}
+
+ The M1M3 assembly refers to the Primary and Tertiary telescope mirror,
+its support system, the mirror cell, the M1M3 Mirror (or surrogate
+Mirror), and the Thermal Control System. The last-mentioned System
+consists of several blower nozzles, thermal heat exchangers, cooling
+Fans, thermal sensors, a water/glycol mixture coolant system, glycol
+pump and control electronics.
+
+
+\subsection{Document Overview}
+\label{sect:docoverview}
+
+This document was generated from Jira, obtaining the relevant information from the
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P93}{LVV-P93}
+~Jira Test Plan and related Test Cycles (
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C185}{LVV-C185}
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C194}{LVV-C194}
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C195}{LVV-C195}
+).
+
+Section \ref{sect:intro} provides an overview of the test campaign, the system under test (\product{}),
+the applicable documentation, and explains how this document is organized.
+Section \ref{sect:testplan} provides additional information about the test plan, like for example the configuration
+used for this test or related documentation.
+Section \ref{sect:personnel} describes the necessary roles and lists the individuals assigned to them.
+
+Section \ref{sect:overview} provides a summary of the test results, including an overview in Table \ref{table:summary},
+an overall assessment statement and suggestions for possible improvements.
+Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
+
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P93}{LVV-P93} in Jira is \textbf{ Draft }.
 
 \subsection{References}
 \label{sect:references}
@@ -40,5 +101,3426 @@ Use the GitHub Actions workflow ``docgen from Jira'' to generate this document's
 \bibliography{lsst,refs,books,refs_ads,local}
 
 
-\input{appendix}
+\newpage
+\section{Test Plan Details}
+\label{sect:testplan}
+
+
+\subsection{Data Collection}
+
+  Observing is not required for this test campaign.
+
+\subsection{Verification Environment}
+\label{sect:hwconf}
+  The M1M3 Thermal Control System will be first verified with the Mirror
+Cell + Subrogated Mirror on the 3rd floor of the Summit Facility. Then,
+once the coated M1M3 Mirror has been installed in the mirror cell, this
+Mirror system, together with its Thermal System, will be installed and
+verified on the TMA (Telescope Mount Assembly).
+
+  \subsection{Entry Criteria}
+  To run these tests, the following criteria must be met first:\\
+
+\begin{itemize}
+\tightlist
+\item
+  All the M1M3 Hazard Tickets and their Mitigations must be in VERIFIED
+  Status.
+\item
+  All utilities and electrical connections are hooked up and allow the
+  M1M3 to be powered on and controlled.
+\item
+  The EFD must be set up to be able to store events and telemetry data.
+\item
+  Requires the surrogate mirror to be installed in the M1M3 mirror cell
+  before performing the First Verification Cycle.
+\item
+  Requires the coated mirror to be installed in the M1M3 mirror cell and
+  installed on the TMA before performing the Second Verification Cycle.
+\end{itemize}
+
+  \subsection{Exit Criteria}
+  For this event to be considered complete, the following criteria must be
+met:
+
+\begin{itemize}
+\tightlist
+\item
+  Raw test data, events, and telemetry must be stored in the M1M3 Summit
+  EFD.
+\item
+  All test data has been analyzed and post-processed.
+\item
+  All test steps have been stated in the Jira Test Cases within this
+  Test Plan and actual results populated as required.
+\item
+  A summary of the results of the test campaign has been captured in the
+  Overall Assessment and Recommended Improvements fields of this Test
+  Plan
+\item
+  A link to the verification artifacts used to produce the summary of
+  results has been populated in the Verification Artifacts field of this
+  Test Plan
+\item
+  Any failures have been captured in the
+  \href{https://jira.lsstcorp.org/projects/FRACAS/issues/}{FRACAS}
+  project
+\end{itemize}
+
+
+\subsection{Related Documentation}
+
+
+No additional documentation provided.
+
+
+\subsection{PMCS Activity}
+
+Primavera milestones related to the test campaign:
+\begin{itemize}
+\item None
+\end{itemize}
+
+
+\newpage
+\section{Personnel}
+\label{sect:personnel}
+
+The personnel involved in the test campaign is shown in the following table.
+
+{\small
+\begin{longtable}{p{3cm}p{3cm}p{3cm}p{6cm}}
+\hline
+\multicolumn{2}{r}{T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P93}{LVV-P93} owner:} &
+\multicolumn{2}{l}{\textbf{ Pablo Zorzi } }\\\hline
+\multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C185}{LVV-C185} owner:} &
+\multicolumn{2}{l}{\textbf{
+Pablo Zorzi }
+} \\\hline
+\textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2401}{LVV-T2401}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2543}{LVV-T2543}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2542}{LVV-T2542}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2524}{LVV-T2524}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2414}{LVV-T2414}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Electronical Technician.\\
+(1) Electronical Engineer\\
+(1) Systems Verification Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2413}{LVV-T2413}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2406}{LVV-T2406}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Electronical Technician.\\
+(1) Mechanical Technician\\
+(1) Electronical/Software Engineer\\
+(1) Systems Verification Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2405}{LVV-T2405}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2404}{LVV-T2404}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2394}{LVV-T2394}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Mechanical Engineer\\
+(1) Electrical Engineer\\
+(1) Software Engineer\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C194}{LVV-C194} owner:} &
+\multicolumn{2}{l}{\textbf{
+Undefined }
+} \\\hline
+\textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2397}{LVV-T2397}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2398}{LVV-T2398}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2402}{LVV-T2402}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2408}{LVV-T2408}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (2) Electronic Technician (performing the replacement)\\
+(1) Electronic Engineer (supervising the replacement).\\
+(1) Systems Verification Engineer (measuring the time) }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2411}{LVV-T2411}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2412}{LVV-T2412}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2530}{LVV-T2530}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2527}{LVV-T2527}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2407}{LVV-T2407}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small (1) Content Specialist\\
+(1) Systems Engineer }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2400}{LVV-T2400}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2529}{LVV-T2529}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2395}{LVV-T2395}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2410}{LVV-T2410}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2521}{LVV-T2521}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2403}{LVV-T2403}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C195}{LVV-C195} owner:} &
+\multicolumn{2}{l}{\textbf{
+Undefined }
+} \\\hline
+\textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2409}{LVV-T2409}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2520}{LVV-T2520}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2519}{LVV-T2519}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2518}{LVV-T2518}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2517}{LVV-T2517}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2516}{LVV-T2516}
+& {\small Pablo Zorzi } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\end{longtable}
+}
+
+\newpage
+
+\section{Test Campaign Overview}
+\label{sect:overview}
+
+\subsection{Summary}
+\label{sect:summarytable}
+
+{\small
+\begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
+\toprule
+\multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P93}{LVV-P93}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ M1M3 Thermal Control System Verification Testing on Level 3. }} & Draft \\\hline
+\multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C185}{LVV-C185}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ M1M3 Thermal Control System Verification on Level 3. }} & Not Executed \\\hline
+\textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2401}{LVV-T2401}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2543}{LVV-T2543}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2542}{LVV-T2542}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2524}{LVV-T2524}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2414}{LVV-T2414}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2413}{LVV-T2413}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2406}{LVV-T2406}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2405}{LVV-T2405}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2404}{LVV-T2404}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2394}{LVV-T2394}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C194}{LVV-C194}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ M1M3 Thermal Control System Analysis and Inspection Cases }} & Not Executed \\\hline
+\textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2397}{LVV-T2397}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2398}{LVV-T2398}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2402}{LVV-T2402}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2408}{LVV-T2408}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2411}{LVV-T2411}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2412}{LVV-T2412}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2530}{LVV-T2530}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2527}{LVV-T2527}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2407}{LVV-T2407}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2400}{LVV-T2400}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2529}{LVV-T2529}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2395}{LVV-T2395}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2410}{LVV-T2410}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2521}{LVV-T2521}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2403}{LVV-T2403}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C195}{LVV-C195}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ M1M3 Thermal Control System Parent Tickets Verifications. }} & Not Executed \\\hline
+\textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2409}{LVV-T2409}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2520}{LVV-T2520}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2519}{LVV-T2519}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2518}{LVV-T2518}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2517}{LVV-T2517}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2516}{LVV-T2516}
+&  1
+& Not Executed &
+\begin{minipage}[]{9cm}
+\smallskip
+
+\medskip
+\end{minipage}
+&   \\\hline
+\caption{Test Campaign Summary}
+\label{table:summary}
+\end{longtable}
+}
+
+\subsection{Overall Assessment}
+\label{sect:overallassessment}
+
+Not yet available.
+
+\subsection{Recommended Improvements}
+\label{sect:recommendations}
+
+Not yet available.
+
+\newpage
+\section{Detailed Test Results}
+\label{sect:detailedtestresults}
+
+\subsection{Test Cycle LVV-C185 }
+
+Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/LVV-C185}{M1M3 Thermal Control System Verification on Level 3.}} in Jira.
+
+Test Cycle name: M1M3 Thermal Control System Verification on Level 3.\\
+Status: Not Executed
+
+This preliminary Test Cycle aims to TEST all the M1M3 Thermal Control
+System requirements that can be performed on Level\_3 with the M1M3 Cell
++ Surrogate Mirror configuration.
+
+\subsubsection{Software Version/Baseline}
+To be fill
+
+\subsubsection{Configuration}
+Not provided.
+
+\subsubsection{Test Cases in LVV-C185 Test Cycle}
+
+\paragraph{ LVV-T2401 - M1M3 Self-Heat Removal Methods Verification on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2401}{\textit{ LVV-T2401 } }
+test case in Jira.
+
+The main purpose of this Test Case is to verify the M1M3 Thermal System
+can remove the total Heat Load generated by the Cell's active components
+such as the FCU and the Recirculation Pump.\\[2\baselineskip]This Test
+Case Verifies that the following specific requirements should be met:\\
+
+\begin{itemize}
+\tightlist
+\item
+  That the self-released heat shall be absorbed by the thermal Coolant
+  system itself and evacuated from the mirror cell.
+\item
+  The whole M1M3 mirror thermal system must dissipate \textasciitilde{}
+  10.4 kW of heat in total.
+\item
+  And that the self-heat removal load must specifically include the
+  power/heat produced by the fans/blower and the recirculation pump.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Power on the M1M3 Thermal System hardware.\\[2\baselineskip]
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Enable the engineering Thermal System GUI in automatic mode.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Enter/set a target temp = Level \_3 Ambient temp -1 deg C..
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Wait 20 minutes and verify that the M1M3 Cell temperature displayed by
+the ~Engineering GUI is converging into the Set point temperature.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The measured Cell temp must be decreasing as a function of time once the
+target temp is been settled.~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Wait a few more minutes until the M1M3 Cell temperature reaches the Set
+Point temperature and gets stable around that point.\\[3\baselineskip]
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 6 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Postprocess the EFD recorded temperature of the M1M3
+Cell\textbf{{~(sensor log iD?)}}{~and use~}Chronograph. to generate a
+Plot that contains the Level\_3 ambient temperature and the M1M3 Cell
+temperature as a function of the Test execution time.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 7 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Verify that the generated plot shows the fact that the target
+temperature = Set point temperature.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+M1M3 Cell temp =Set Point temp with a 5\% of deviation at most.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 8 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+From the data obtained in the previous step 7, estimate the amount of
+Heat DeltaQ been removed/dissipated by the M1M3 Thermal System according
+to the following equation:\\[2\baselineskip]DeltaQ =
+m*c*deltaT\\[2\baselineskip]Where::\\
+m = Mass of the Cell and ``other components???'' (Kg)\\
+c = Its Specific Heat Capacity (J/Kg degC)\\
+deltaT = Temperature change (degC)\\[2\baselineskip]\textbf{{Brian:}}
+
+\begin{itemize}
+\tightlist
+\item
+  {\textbf{We simply need the input and output temperature of glycol to
+  measure the delta T of the equation.}}
+\item
+  {\textbf{We also have the cooling capacity of the glycol we're using}}
+\item
+  \textbf{{No other components are necessary to consider for the mass of
+  the equation\ldots{} the mass of the Glycol???}}
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 9 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Verify that the calculated amount of Heat been removed/dissipated by the
+thermal system is within the budget estimation value presented in
+Document-7574.\\[2\baselineskip]\textbf{{BRIAN:}}
+
+\begin{itemize}
+\tightlist
+\item
+  {\textbf{We can actually verify the 10.4kW of heat by tweaking the
+  system in a specific way.}}
+\item
+  \textbf{{Need Doug's input on the best way to do it}}
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The whole M1M3 mirror thermal system must dissipate =\textless{} 10.4 kW
+of heat in total.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 10 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Disable the engineering Thermal System GUI .
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 11 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Shut down the M1M3 Thermal System hardware.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2543 - M1M3 Control System Automatic Mode GUI Requirements Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2543}{\textit{ LVV-T2543 } }
+test case in Jira.
+
+The aim of this Test Case is to verify all the Requirements related to
+the Automatic Control Mode of the Thermal System:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Change the Blower Speed, Mixing valve offset, the Pump speed, and its
+  operational mode.
+\item
+  And also validate that the Thermal System and its associated
+  controller devices must operate automatically in \textbf{Automatic
+  Mode} while Operating/Observing without the interaction of any
+  technical Staff.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-18903}{LTS-89-REQ-0112-V-01}:
+Automatic Mode Operations\\
+
+\begin{itemize}
+\tightlist
+\item
+  Launch the Engineering Thermal System GUI ``M1M3TSGUI.py''.
+\item
+  Enable the Automatic Mode.
+\item
+  Energize/de-energize the system
+\item
+  Energize/de-energize the significant subsystems (blower assemblies and
+  recirculation loop)
+\item
+  Change the target temperature.
+\item
+  Change the blower speed.
+\item
+  Change the recirculation pump speed.
+\item
+  Change the recirculation pump operation mode.
+\item
+  Change the mixing valve offset.
+\end{itemize}
+
+\textbf{{Petr: ``All the above-mentioned GUI Thermal System Features are
+still under development''.}}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the verification check steps to be performed here must PASS.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11337}{LTS-89-REQ-0045-V-01}:
+Automatic Mode\\
+
+\begin{itemize}
+\tightlist
+\item
+  Set target temp = Level\_3 ambient temp -1 Cdeg.
+\item
+  Run a Test of about 12 hours in Automatic mode and verify that the
+  target temp is following the ambient change -1Cdeg.
+\item
+  Generate a Test Data file from EFD with the parameters of interest and
+  generate a ``proper'' Plot with the results.\textbf{{~(}{What will be
+  the EFD temp parameter to consult for this case}})
+\item
+  Disable the GUI Manual mode.
+\item
+  Turn off the Engineering Thermal System GUI ``M1M3TSGUI.py''
+\end{itemize}
+
+\textbf{{Petr: He recommends that this test should be executed with the
+Glass Mirror to ensure good results.}}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Data File to be post-processed.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The Obtained Plot must validate that the Target Temperature is been
+reached and it must be \textless{}= 1 degC lower than the Level\_3
+Ambient Temp.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2542 - M1M3 Control System Manual Mode GUI Requirements Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2542}{\textit{ LVV-T2542 } }
+test case in Jira.
+
+The aim of this Test Case is to verify all the requirements related to
+the Manual Control Mode of the Thermal System:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Manual Mode User Interface.
+\item
+  GUI parameters check, tracking, and visualization.
+\item
+  GUI components parameters input changes.
+\item
+  Checking the Engineering Manual mode testing for Maintenance and
+  Replacement.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-18900}{LTS-89-REQ-0109-V-01}:
+GUI/EUI\\
+
+\begin{itemize}
+\tightlist
+\item
+  Check that you can access, edit, and modify the different
+  configuration files (such as the \textbf{MixingValve.yaml}) for all
+  the control system parameters without any inconvenience. Those files
+  are located in the \textbf{SettingFiles/Sets/Default} folder.
+\item
+  Launch the Engineering Thermal System GUI ``M1M3TSGUI.py''
+\item
+  Enable the Manual mode.
+\item
+  Verify that you are able to Command each one of the components
+  included in the mirror thermal system.
+\item
+  Perform a verification check of all the standard Thermal System
+  Maintenance tests are included in the Engineering GUI.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Screenshots and a checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the mentioned Tests, Commands, and parameters can be performed,
+executed, and able o be changed.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-18901}{LTS-89-REQ-0110-V-01}:
+GUI Parameters\\
+
+\begin{itemize}
+\tightlist
+\item
+  Set a target temperature and check that the Blower fan speed on all
+  FCU changes.
+\item
+  Set/modified a ``particular'' fan speed for three randomly chosen FCU.
+\item
+  Set/modified the speed of the recirculation pump and check how the
+  temperature of the Thermal System changes.
+\item
+  Set/modified the temperature of the M1M3 Cell by changing the mixing
+  valve ratio. settings.~
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the verification functionality check steps to be performed here must
+PASS.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-18902}{LTS-89-REQ-0111-V-01}:
+GUI Component Operation.\\
+
+\begin{itemize}
+\tightlist
+\item
+  Open and close all remotely \textbf{{actuated coolant
+  valves}}{\textbf{~(Petr wondered what that means?}}) and verify that
+  the Mirror Cell temp changes.
+\item
+  Modify the settled target temperature of the system by turning the
+  heating on/off and verify that the Mirror Cell temp changes.
+\item
+  Set a ``target flow'' rate for the blowers and turn the fans on/off
+  and verify that the Mirror Cell temp changes.
+\item
+  Set a ``target flow'' rate for the recirculation pump and turn the
+  pump on/off and verify that the Mirror Cell temp changes.
+\end{itemize}
+
+Petr: pointed out that to perform any successful temperature measurement
+on the Thermal System, such above mentioned tests shall be performed
+then with the Mirror Glass included)
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the Operation verification check steps to be performed here must
+PASS.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11338}{LTS-89-REQ-0046-V-01}:
+Manual Mode\\
+
+\begin{itemize}
+\tightlist
+\item
+  Verify that all the required panel buttons, checkboxes, choice lists,
+  etc., are been properly displayed and labeled.
+\item
+  Verify that you can enable/disable ``all'' the GUI added
+  maintenance/replacement functionality tests been included with this
+  Engineering GUI \textbf{{(those are still under development)}}~
+\item
+  Take as many Screenshots as needing it from the GUI displayed messages
+  during the verification mentioned before.
+\item
+  Check also that there is no way to enable the Thermal system Automatic
+  mode while working in Manual Mode.~
+\item
+  Take a screenshot of the displayed GUI command history and possible
+  ``error messages''.
+\item
+  Disable the GUI Manual mode.
+\item
+  Turn off the Engineering Thermal System GUI ``M1M3TSGUI.py''
+\end{itemize}
+
+{\textbf{Warning: You can Not operate the heaters in Manual Mode since
+the User Interface by default does not allow us to do that.}}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Screenshots and Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The Thermal Mode System GUI must provide all the proper tools for the
+Systems maintenance and manual Tests.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2524 - M1M3 Thermal System Cooling and Heating Rate Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2524}{\textit{ LVV-T2524 } }
+test case in Jira.
+
+This Test Case will aim to verify that the Thermal System can regulate,
+control, and adjust the cooling and heating capacity of the Mirror Cell
+(with the real Mirror?) while the surrounding ambient temperature change
+with time.\\[2\baselineskip]This Test Case Verifies that once it has
+been performed, the following specific requirements should be met:
+
+\begin{itemize}
+\tightlist
+\item
+  The measured M1M3 mirror temperature must be 1.0°C lower than the
+  ambient temperature inside the enclosure, with a resolution of 0.1°C,
+  at any time during the time scale of the Test.
+\item
+  That the measured Cooling rate of the M1M3 mirror must be
+  \textgreater{}= 0.7 °C.
+\item
+  The measured Thermal Heat rate of the M1M3 mirror must be
+  \textgreater{}= 2.0 °C/hour.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2414 - M1M3 Interlock System Interface Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2414}{\textit{ LVV-T2414 } }
+test case in Jira.
+
+The aim of this Test case is to verify that the M1M3 Interlock System
+(IS) activates if a Leak, open Cell door, or an Emergency e-stop has
+been detected/enabled.\\[2\baselineskip]The following 5x specific
+requirements will be verified during this Test Case:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-18907}{LTS-89-REQ-0114-V-01}:
+  Heartbeat
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-18905}{LTS-89-REQ-0116-V-01}:
+  Door Open Detection
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-18904}{LTS-89-REQ-0115-V-01}:
+  Leak Detection
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-18906}{LTS-89-REQ-0117-V-01}:
+  Emergency Stop
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-18908}{LTS-89-REQ-0118-V-01}:
+  Interlock Override
+\end{itemize}
+
+\textbf{Discussion:}\\
+{This is a pending Test Case where before continuing with its
+description, a GIS meeting with Austin, Felipe, and Franco needs to be
+settled in order to discuss the Final implementation of these M1M3 IS
+and how the Verification of this Test Case will be performed.}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2413 - M1M3 TS Communication \& Control Interface Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2413}{\textit{ LVV-T2413 } }
+test case in Jira.
+
+The aim of this Test case is to verify that all M1M3 thermal control
+system commands, events, and telemetry data can go through SAL. By using
+the following communication architecture:\\
+
+\begin{itemize}
+\tightlist
+\item
+  The TCS-M1M3 TS interface provides the mechanism for the TCS
+  (Telescope Control System) to act as the M1M3 TS supervisor.
+\item
+  And the M1M3 TS subsystem which receives commands and publishes
+  telemetry and events.
+\end{itemize}
+
+Then through this Test Case, the M1M3 TS Communication Publishing and
+Communication Interface capabilities can be tested.\\[2\baselineskip]
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2406 - M1M3 Air Flow throw Nozzle Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2406}{\textit{ LVV-T2406 } }
+test case in Jira.
+
+This Test Case aims to verify that the implemented Air Flow
+recirculation system between the M1M3 Mirror and Cell can achieve the
+temperature Specification imposed on the Mirror by adjusting the air
+flowing through each Nozzle and the FCU. This Test will be first
+implemented and verified on a specially designed Test Bench and later on
+the M1M3 complete system.\\[2\baselineskip]The following 2x specific
+requirements will be verified with this Test Case:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-11350}{LTS-89-REQ-0061-V-01}:
+  Air Flow Nozzles Height Adjustment
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-11345}{LTS-89-REQ-0059-V-01}:
+  Air Flow Speed Variability
+\end{itemize}
+
+\textbf{Discussion:}\\
+{The Test Bench is still under construction. As Felipe D. about an
+update. There are some technical descriptions of the Test Stand to test
+the Nozzles head position inside the mirror Cell in the ``M1M3 Mirror
+Thermal Control System -- Fan Coil Unit Testing Update'' presentation
+from August 13, 2018, that it can be found in
+DocuShare.}\\[2\baselineskip]
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2405 - M1M3 Operational Safety Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2405}{\textit{ LVV-T2405 } }
+test case in Jira.
+
+The Objective of this Test Case will be to verify that the implemented
+M1M3 Thermal Safety System must lower the Mirror and shut down the
+Glycol and Air pumping system in case of a Leak.\\[2\baselineskip]The
+following 3x specific requirements will be verified with this Test Case:
+
+\begin{itemize}
+\tightlist
+\item
+  ~Automatic Leak Detection System =\textgreater{} Leak Alarm enables
+  correctly
+\item
+  The Mirror Cell Assembly Protection activates =\textgreater{} It Lower
+  the Mirror.
+\item
+  And then, it will follow the Automatic Shutdown of the Complete
+  thermal System (Mixing Valve, Recirculation Pump, FCU, etc.).
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2404 - M1M3 Control System General GUI Requirements Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2404}{\textit{ LVV-T2404 } }
+test case in Jira.
+
+This Test case aims to Verify that the M1M3 Control System Engineering
+GUI can perform the following specific operations and measurements
+jobs:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Telemetry rate
+\item
+  Target Temp. during Pre-cooling and Operations.
+\item
+  Enabling and disabling the Automatic and Manual Operation modes
+  without interference with each other.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2394 - M1M3 Coolant System Operational Test on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2394}{\textit{ LVV-T2394 } }
+test case in Jira.
+
+This Test Case aims to verify M1M3 Coolant System loop can be closed and
+control the Mirror Cell temperature (and it Mirror?) and also check the
+functionality of its Pump and Mixing Valve
+sub-components.\\[2\baselineskip]The following 4x coolant system
+specific requirements verifications that must be tested here are:\\
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-11390}{}\href{https://jira.lsstcorp.org/browse/LVV-11390}{}The
+  coolant temperature must be maintained between 5 and 10 deg C below
+  ambient
+  temperature.\href{https://jira.lsstcorp.org/browse/LVV-18909}{}
+\item
+  Check/confirm that the installed Pump must work with the following two
+  operating modes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Constant speed: The pump operates at a constant speed through the
+    automatic system or the GUI.~
+  \item
+    Variable speed: The pump operates on a speed proportional to the
+    difference between the mean mirror temperature and the target
+    temperature. The system provides all the parameters necessary to
+    tune the system for this mode.
+  \end{itemize}
+\item
+  ~The metering valve must keep the cooling fluid temperature relative
+  to the target temperature within +/-0.5 °C of a specified offset
+  setting below the target temperature (typically 1degC below this
+  target temp).\href{https://jira.lsstcorp.org/browse/LVV-18897}{}
+\item
+  Check/confirm that the installed Mixing Valve must work using two
+  operational modes.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Constant offset: The mixing value operates at a constant temperature
+    offset provided through the GUI.
+  \item
+    Variable offset: The mixing valve operates on a temperature offset
+    proportional to the difference between the mean mirror temperature
+    and the target temperature. For this mode, the system provides all
+    the parameters necessary to tune the system.
+  \end{itemize}
+\end{itemize}
+
+{\\
+}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+
+\subsection{Test Cycle LVV-C194 }
+
+Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/LVV-C194}{M1M3 Thermal Control System Analysis and Inspection Cases}} in Jira.
+
+Test Cycle name: M1M3 Thermal Control System Analysis and Inspection Cases\\
+Status: Not Executed
+
+The main task of this Test Cycle aims to gather all the information
+(documentation, photographs, etc.) and perform Analysis work
+(calculations, estimations, etc.) that the M1M3 Thermal Control System
+requires while the Cell is located on Level\_3.~
+
+\subsubsection{Software Version/Baseline}
+Not provided.
+
+\subsubsection{Configuration}
+Not provided.
+
+\subsubsection{Test Cases in LVV-C194 Test Cycle}
+
+\paragraph{ LVV-T2397 - M1M3 Component Identification Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2397}{\textit{ LVV-T2397 } }
+test case in Jira.
+
+This Test Case aims to verify by Inspection that each one of the M1M3
+Thermal System components must have a unique identifying label
+number.\\[2\baselineskip]
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the Thermal System components must have a unique identification
+number/label.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2398 - M1M3 Thermal System main Subcomponents Location and Inter-distance
+Inspection Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2398}{\textit{ LVV-T2398 } }
+test case in Jira.
+
+Verify by Inspection that the following requirements on the M1M3Thermal
+System components must be fulfilled:\\
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-11352}{} Check that all the
+  mirror thermal system components, except the control cabinet, must be
+  located inside the mirror cell.
+\item
+  Verify that all the installed Thermal System components do not
+  interfere with each other or other M1M3 Mirror sub-systems.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the components that need to be cheeked must be located inside the
+Thermal System.~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the installed components that need to be cheeked must not interfere
+with each other.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2402 - M1M3 Self-Heat Removal Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2402}{\textit{ LVV-T2402 } }
+test case in Jira.
+
+Verify by Inspection that the following requirement must be fulfilled:\\
+\href{https://jira.lsstcorp.org/browse/LVV-11401}{}\\
+\hspace*{0.333em}Verify that any other heat-producing items mounted on
+the exterior of the mirror cell must have a direct cooling connection by
+the glycol water system.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Verify that the following M1M3 external components must have a cooling
+system that dissipates the heat produced by them:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Glycol Pump
+\item
+  Glycol Metering Valve
+\item
+  Thermal Control System electronic Rack
+\item
+  Hardpoints/Actuators Control System electronic Rack
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2408 - M1M3 Reliability \& Maintainability Demonstration on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2408}{\textit{ LVV-T2408 } }
+test case in Jira.
+
+Demonstrate that replacing an onboard blower assembly (FCU) or any other
+cooling system equipment in the M1M3 mirror thermal system shall require
+less than 3 hours to be performed.
+
+\textbf{ Preconditions}:\\
+Prior to the execution of this test case, the following must be
+completed:\\
+
+\begin{enumerate}
+\tightlist
+\item
+  All M1M3 Systems installed + Surrogate (it does not need the real
+  mirror).
+\item
+  All M1M3 Systems can be operated but at the time of the replacement,
+  they must be disabled.~
+\item
+  The M1M3 mirror system is in passive mode and the Surrogate is resting
+  on the static supports.
+\item
+  The M1M3 mirror positioning system is operational and the outputs are
+  being recorded.
+\item
+  M1M3 Thermal Control system is current and in maintenance configured
+  mode for this test.
+\item
+  All test data is being recorded to the Engineering Facility Database
+  EFD
+\end{enumerate}
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11354}{{\textbf{LTS-89-REQ-0068-V-01}}}{\textbf{:
+Duration to Change equipment}}{\\[2\baselineskip]{Demonstrate that
+replacing an onboard blower assembly (FCU) or any other cooling system
+equipment in the M1M3 mirror thermal system shall require less than 3
+hours to be performed.}}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2411 - M1M3 Mirror Cell Interfaces Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2411}{\textit{ LVV-T2411 } }
+test case in Jira.
+
+The objective of this test case is to verify the M1M3 Thermal System
+shall fit inside the mirror cell and all its interfaces shall be
+compatible according to the attached design document.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11325}{LTS-89-REQ-0091-V-01}:
+Mirror Cell Interfaces\\[2\baselineskip]Verify that the thermal mirror
+system must:\\
+
+\begin{itemize}
+\tightlist
+\item
+  fit inside the mirror cell~
+\item
+  and all its interfaces shall be compatible with the interfaces
+  provided in document LTS-326, M1M3 Cell Weldment.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2412 - M1M3 Access/Test Interface Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2412}{\textit{ LVV-T2412 } }
+test case in Jira.
+
+The Objective of this Inspection is to check that the M1M3 Thermal
+System shall be easily accessible for maintenance and it shall also have
+accessible testing points/connectors being provided within the system
+according to the attached design document.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11322}{LTS-89-REQ-0093-V-01}:
+Access/test Interface\\[2\baselineskip]Verify that when necessary, the
+thermal mirror system Must:\\
+
+\begin{itemize}
+\tightlist
+\item
+  be easily accessible for maintenance.~
+\item
+  accessible testing points/connectors have been provided with the
+  system.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2530 - M1M3 Reliability \& Maintainability Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2530}{\textit{ LVV-T2530 } }
+test case in Jira.
+
+Verify by inspection that all special tools or handling equipment
+required to maintain the thermal mirror system must have been delivered
+with that system.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2527 - M1M3 Coolant System Inspection on Level\_3 }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2527}{\textit{ LVV-T2527 } }
+test case in Jira.
+
+\textbf{The aim of this Inspection is to p}erform a verification check
+that confirms that all the installed plumbing required by the Thermal
+Control System must include specifically:\\
+
+\begin{itemize}
+\tightlist
+\item
+  a three-way metering mixing valve.~
+\item
+  a recirculation pump.
+\item
+  an electrical actuator coolant valve to isolate the system in case of
+  leaks.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2407 - M1M3 Reliability \& Maintainability Analysis }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2407}{\textit{ LVV-T2407 } }
+test case in Jira.
+
+The aim of this Test Case is to analyze the existing Reliability and
+Maintainability documentation of the M1M3 Thermal System and extract the
+following information:\\
+
+\begin{itemize}
+\tightlist
+\item
+  The Thermal System must have been designed to limit the system failure
+  rate to 10\% of the total number of components over the entire life of
+  the survey
+\item
+  Demonstrate that the M1M3 Thermal System must have been designed to be
+  operable continuously 24 hours a day and seven days a week.
+\item
+  Verify that the thermal mirror system must have been delivered with
+  enough spares of critical elements to ensure continuous operation over
+  the 30-year life of the telescope:
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11356}{LTS-89-REQ-0066-V-01}:
+Duty Cycle\\[2\baselineskip]Demonstrate that the M1M3 Thermal System
+must have been designed to be operable continuously 24 hours a day and
+seven days a week.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11357}{LTS-89-REQ-0067-V-01}:
+Failure Rate\\[2\baselineskip]Demonstrate that since the telescope has a
+design life of 30 years, its M1M3 Mirror Thermal System must have been
+designed to limit the system failure rate to 10\% of the total number of
+components over the entire life of the survey.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11358}{LTS-89-REQ-0070-V-01}:
+Spares\\[2\baselineskip]Verify that the thermal mirror system must have
+been delivered with enough spares of critical elements to ensure
+continuous operation over the 30-year life of the telescope:\\
+\hspace*{0.333em}\\
+
+\begin{itemize}
+\tightlist
+\item
+  In particular, as a minimum, one complete set of spare assemblies
+  shall be provided for each type of component assembly utilized in the
+  thermal mirror system.~
+\item
+  For the onboard blower assemblies, two complete spare groups shall be
+  provided.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2400 - M1M3 Electrical Power Inspection }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2400}{\textit{ LVV-T2400 } }
+test case in Jira.
+
+This inspection means to Verify that the M1M3 Thermal System Electrical
+standard (review its design docs/datasheets) shall comply with Chile's
+230V (50Hz) electrical power standards.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Check Item..
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The Thermal System must comply with the Chilean 230V (50Hz) Electrical
+Standards.~\\[3\baselineskip]
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2529 - M1M3 Absolute Temperature Measurement Accuracy Inspection }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2529}{\textit{ LVV-T2529 } }
+test case in Jira.
+
+The aim of this inspection is that by reviewing the design docs/data
+sheets of each one of the thermal sensors being installed in the M1M3
+Cell System, its absolute temperature measurement accuracy shall be +/-
+0.04degC.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2395 - M1M3 Coolant System Inspections and Analysis }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2395}{\textit{ LVV-T2395 } }
+test case in Jira.
+
+This Test Inspection/Analysis aims to verify that the following 4x M1M3
+Coolant System requirements will be met by the technical documentation
+being attached with this test Case:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Check that all the installed Plumbing materials are made of
+  corrosion-resistant materials, stainless steel, copper, or polymers
+  approved by LSST PO.
+\item
+  \textbf{~}Using the data provided by the manufacturer, check and
+  validate that the flow rate to each blower assembly (fan coil unit) is
+  nominally identical, and follows the design.
+\item
+  Confirm that The Mirror thermal control system MUST have installed a
+  Metering Valve (three-way mixing valve) and a Recirculation Pump to
+  control the temperature of the glycol/water cooling loop.
+\item
+  \textbf{~}By checking the installed Pump Manufacturer Datasheet,
+  confirm that the recirculation system must have the following
+  properties:
+\end{itemize}
+
+~ ~ ~ ~ ~ ~ 1. Variable frequency drive to vary and control the pump
+speed.\\
+\hspace*{0.333em} ~ ~ ~ ~ ~ 2. Be of a centripetal type and not a
+reciprocating type.\\
+\hspace*{0.333em} ~ ~ ~ ~ ~ 3. Thermally enclosed and with heat removed
+by the thermal mirror system.\\
+\hspace*{0.333em} ~ ~ ~ ~ ~ 4. Vibration isolated with isolation mounts
+and flexible hose attachments.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the devices to be checked must have been included in the M1M3
+Thermal System.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the installed Plumbing Materials items must fulfill the stated
+requirements.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Per each one of the FCU (Fan Coil Units) provided by the manufacturer,
+they~ must show a nomically identically air flow rate according to their
+tests/datasheets.\\[2\baselineskip]
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Verify that the M1M3 Thermal Cooling part of the System must have been
+implemented with a Metering Valve and Recirculation Pump.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+All the Pump properties to be checked in this test step must meet the
+mentioned specifications.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2410 - M1M3 Environmental Conditions Analysis and Inspections }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2410}{\textit{ LVV-T2410 } }
+test case in Jira.
+
+This is an Inspection/Analysis of several Environmental Requirements
+that don't need to be performed physically since they can be fulfilled
+by providing the Analysis Studies, Simulations, or another proper types
+of documentation.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11366}{LTS-89-REQ-0074-V-01}:
+Relative Humidity\\[2\baselineskip]Verify that The mirror cell assembly
+must meet all requirements for a range of relative humidity between 0\%
+and 100\%, with a mean relative humidity of 40\%.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11368}{LTS-89-REQ-0075-V-01}:
+Temperature -- Normal\\[2\baselineskip]Verify that the thermal mirror
+system must comply with a continuous operational mode between --3degC to
+20degC without interruptions.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11370}{LTS-89-REQ-0077-V-01}:
+Temperature -- Marginal\\[2\baselineskip]Please verify that the thermal
+mirror system must remain functional within the marginal operational
+temperature range of between --5°C and 30°C; however, it is not required
+to meet its performance requirements.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11371}{LTS-89-REQ-0078-V-01}:
+Temperature -- Survival\\[2\baselineskip]Please verify that the thermal
+mirror system must survive the operational temperature range of between
+--10°C and 30°C without damage when it is at rest in a Survival
+position; however, it is not required to remain functional.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11365}{LTS-89-REQ-0079-V-01}:
+Precooling Air temperature\\[2\baselineskip]Verify that when the
+Telescope Enclosure is closed during the day, the air temperature inside
+the enclosure will be conditioned and maintained at a constant
+temperature \textasciitilde{}1°C lower than the Dome internal
+temperature.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 6 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11364}{LTS-89-REQ-0080-V-01}:
+Ambient Air temperature Profile\\[2\baselineskip]Verify that when the
+Telescope Enclosure is open at night:\\
+
+\begin{itemize}
+\tightlist
+\item
+  the enclosure's air conditioning must be turned off.~
+\item
+  the air temperature inside the enclosure will be conditioned and
+  maintained at a constant temperature always \textasciitilde{}1°C lower
+  than the external air temperature.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 7 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11379}{LTS-89-REQ-0081-V-01}:
+Wind speed inside the dome - Normal\\[2\baselineskip]Verify that the
+thermal mirror system shall meet all its requirements for wind inside
+the dome between 0 and 6m/sec, from any horizontal wind direction, and
+any elevation angle between 0 and 90 degrees.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 8 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11363}{LTS-89-REQ-0082-V-01}:
+Altitude\\[2\baselineskip]\textbf{{Verify that the thermal mirror system
+shall meet all its requirements from sea level (where it is tested) up
+to an altitude of 2650m (where the telescope is located) ???}}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 9 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11367}{LTS-89-REQ-0083-V-01}:
+Seismic and Gravity Load\\[2\baselineskip]Verify that all mirror thermal
+system components must be designed to withstand a combined seismic and
+gravity load of 2.5 G without damage in any orientation by attaching
+proper Seismic and Gravity Simulation documentation that confirms that
+information.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 10 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11372}{LTS-89-REQ-0084-V-01}:
+Vacuum Compatibility\\[2\baselineskip]Verify, by searching and attaching
+the proper technical documentation/tests, that all the equipment
+(including wire, pipe, duct, etc.) located inside the mirror cell must
+be suitable for use in a 10-5 to 10-6 Torr vacuum environment, and its
+out-gassing rate shall be provided.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 11 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11374}{LTS-89-REQ-0086-V-01}:
+Removable Equipment List\\[2\baselineskip]Provide a list of all M1M3
+devices that need to be removed before performing the coating of the
+Mirror since the outgassing level is out of specs or no such
+documentation was found for such devices.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 12 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11376}{LTS-89-REQ-0088-V-01}:
+Trapped Volumes\\[2\baselineskip]According to vacuum design standards,
+please verify that the constructed M1M3 mirror system must avoid any
+trapped volume by adding weep holes, and blind holes shall be vented
+inside the mirror cell and its elements. \textbf{(Vented fasteners are
+to be avoided???).}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 13 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11378}{LTS-89-REQ-0090-V-01}:
+Lubricants and Coatings\\[2\baselineskip]Verify that for the M1M3 mirror
+system:\\
+
+\begin{itemize}
+\tightlist
+\item
+  any used Lubricants shall be vacuum compatible,~
+\item
+  and coatings (such as paints, polymers, and finishes) shall be low
+  out-gassing.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2521 - M1M3 Air Flow throw Nozzle Design Inspection. }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2521}{\textit{ LVV-T2521 } }
+test case in Jira.
+
+This Inspection aims to verify, by checking the design documentation,
+that the M1M3 Thermal System flow rate through the nozzles must be
+manually adjustable by accepting flow control orifices.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2403 - M1M3 Total Heat / Cooling Capacity Analysis }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2403}{\textit{ LVV-T2403 } }
+test case in Jira.
+
+The purpose of this Test Analysis is to verify that the following
+requirements shall be covered by the M1M3 Mirror technical Analysis
+documentation attached to this Test Case:\\
+
+\begin{enumerate}
+\tightlist
+\item
+  the Total Heat Removal Capacity of the M1M3 Thermal System shall be
+  \textgreater{}= 17 kW.
+\item
+  ~the extra amount of Heat Load Capacity generated by the electronics
+  not associated with such a System shall be \textless{}= 1.0kW.
+\end{enumerate}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Datafile and Specification Checklist
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The measured specifications must complied each one of the Specification
+in question.\\[2\baselineskip]
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Datafile.~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The Total Heat Capacity of all the M1M3 components that do not belong to
+its Thermal System does dissipate a maximum Heat of 1kW or less.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Test Data \\
+ {\footnotesize
+Datafile.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The total heat removal capacity of the Thermal System must ~\textless{}=
+17 kW.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+
+\subsection{Test Cycle LVV-C195 }
+
+Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/LVV-C195}{M1M3 Thermal Control System Parent Tickets Verifications.}} in Jira.
+
+Test Cycle name: M1M3 Thermal Control System Parent Tickets Verifications.\\
+Status: Not Executed
+
+This Inspection Test Case aims to track and gather all the results
+related to a general M1M3 Thermal System requirement Parent ticket (and
+its specific sub-requirements) that is been investigated.
+
+\subsubsection{Software Version/Baseline}
+Not provided.
+
+\subsubsection{Configuration}
+Not provided.
+
+\subsubsection{Test Cases in LVV-C195 Test Cycle}
+
+\paragraph{ LVV-T2409 - M1M3 Environmental Conditions Parent Ticket. }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2409}{\textit{ LVV-T2409 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11362}{\textbf{LTS-89-REQ-0073-V-01}}\textbf{:
+Environmental Conditions}\\[2\baselineskip]Check that the mirror cell
+assembly must meet all requirements under the environmental conditions
+applicable to the dome's interior by verifying the Test step-2 through
+step-8 in this Test Case.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+\href{https://jira.lsstcorp.org/browse/LVV-11362}{LTS-89-REQ-0073-V-01}:
+Environmental Conditions\\[2\baselineskip]Check that the mirror cell
+assembly must meet all requirements under the environmental conditions
+applicable to the dome's interior by verifying the Test step-2 through
+step-8 in this Test Case.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2520 - M1M3 Air Flow throw Nozzle Parent Ticket. }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2520}{\textit{ LVV-T2520 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11344}{\textbf{LTS-89-REQ-0058-V-01}}\textbf{:
+Air Flow Though the Nozzles}\\[2\baselineskip]Verify that the air
+circulation loop of the thermal control system, consisting of
+\textasciitilde{}1781 installed nozzles, must provide a minimum average
+of 8.0 liters/second and a maximum of 10.0 liters /second of cooling
+airflow per nozzle.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2519 - M1M3 Operational Safety Parent ticket }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2519}{\textit{ LVV-T2519 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11385}{\textbf{LTS-89-REQ-0050-V-01}}\textbf{:
+Operational Safety}\\[2\baselineskip]Verify that the thermal mirror
+system must be safe for the mirror and mirror cell assembly by
+performing the test checks from Step-2 through Step-4 for this Test
+Case.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2518 - M1M3 Control System Requirements Parent Ticket. }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2518}{\textit{ LVV-T2518 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11328}{\textbf{LTS-89-REQ-0034-V-01}}\textbf{:
+Control System Requirements}\\[2\baselineskip]The mirror thermal control
+system must fulfill all the requirements to be tested with this
+Verification Test from Step 2 through step 12.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2517 - M1M3 Total Heat / Cooling Capacity Parent Ticket. }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2517}{\textit{ LVV-T2517 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11702}{\textbf{LTS-89-REQ-0031-V-01}}\textbf{:
+Total Heat / Cooling Capacity.~}Verify that the thermal mirror system
+must have the capacity to meet:\\
+
+\begin{itemize}
+\tightlist
+\item
+  the pre-cooling, heating rate, and cooling rates, including the mass
+  of the borosilicate mirror, steel mirror cell, invar spreaders,
+  aluminum actuators, steel static supports, and steel hardpoints.~
+\item
+  In addition, it shall remove the heat produced by itself, the mirror
+  support system, the fan coil units, and all electronics.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+\paragraph{ LVV-T2516 - M1M3 Self-Heat Removal Parent ticket }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2516}{\textit{ LVV-T2516 } }
+test case in Jira.
+
+\href{https://jira.lsstcorp.org/browse/LVV-11397}{\textbf{LTS-89-REQ-0026-V-01}}\textbf{:
+Self-Heat Removal Methods.} Verify that all the heat generated by the
+thermal system components must be either directly cooled by the glycol
+water system or released in the mirror cell.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+
+
+
+\input{appendix.tex}
 \end{document}
